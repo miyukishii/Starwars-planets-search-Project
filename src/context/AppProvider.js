@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
+  const [filterByName, setFilterByName] = useState({
+    name: '',
+  });
   const [planets, setPlanets] = useState([]);
 
   useEffect(() => {
@@ -22,7 +25,9 @@ function AppProvider({ children }) {
   return (
     <AppContext.Provider
       value={ {
+        filterByName,
         planets,
+        setFilterByName,
       } }
     >
       {children}

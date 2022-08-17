@@ -3,7 +3,8 @@ import AppContext from '../context/AppContext';
 import PlanetCard from './PlanetCard';
 
 function Table() {
-  const { planets } = useContext(AppContext);
+  const { planets, filterByName } = useContext(AppContext);
+  const { name } = filterByName;
 
   return (
     <table className="table-planets">
@@ -25,14 +26,23 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {
-          planets.map((planet) => (
+        { name.length !== 0
+          ? (
+            planets.filter((planet) => (planet
+              .name).toLowerCase().search(name.toLowerCase()) !== Number('-1'))
+              .map((planet) => (
+                <PlanetCard
+                  key={ planet.name }
+                  planet={ planet }
+                />
+              ))
+          )
+          : planets.map((planet) => (
             <PlanetCard
-              key={ planet.name }
+              key={ planet.url }
               planet={ planet }
             />
-          ))
-        }
+          ))}
       </tbody>
     </table>
   );

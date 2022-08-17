@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Header({ planet }) {
+  // console.log(planet);
   return (
     <tr>
       <td>{planet.name}</td>
