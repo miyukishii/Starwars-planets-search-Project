@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Header({ planet }) {
+function PlanetCard({ planet }) {
   // console.log(planet);
   return (
     <tr>
@@ -22,7 +22,7 @@ function Header({ planet }) {
   );
 }
 
-Header.propTypes = {
+PlanetCard.propTypes = {
   planet: PropTypes.shape({
     name: PropTypes.string,
     rotation_period: PropTypes.string,
@@ -40,4 +40,4 @@ Header.propTypes = {
   }).isRequired,
 };
 
-export default Header;
+export default PlanetCard;

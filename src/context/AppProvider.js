@@ -6,6 +6,12 @@ function AppProvider({ children }) {
   const [filterByName, setFilterByName] = useState({
     name: '',
   });
+  const [inputs, setInputs] = useState({
+    column: 'population',
+    comparison: 'maior que',
+    value: '0',
+  });
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [planets, setPlanets] = useState([]);
 
   useEffect(() => {
@@ -26,8 +32,13 @@ function AppProvider({ children }) {
     <AppContext.Provider
       value={ {
         filterByName,
+        inputs,
+        filterByNumericValues,
         planets,
+        setInputs,
         setFilterByName,
+        setFilterByNumericValues,
+        setPlanets,
       } }
     >
       {children}

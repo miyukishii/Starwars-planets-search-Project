@@ -1,10 +1,26 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
-import PlanetCard from './PlanetCard';
+// import PlanetCard from './PlanetCard';
 
 function Table() {
-  const { planets, filterByName } = useContext(AppContext);
+  const { planets, filterByName, filterByNumericValues } = useContext(AppContext);
   const { name } = filterByName;
+
+  const filterPlanets = () => {
+    if (name.length !== 0) {
+      return planets.filter((planet) => (planet
+        .name).toLowerCase().search(name.toLowerCase()) !== Number('-1'));
+    } if (filterByNumericValues.length !== 0) {
+      const { column, comparison, value } = filterByNumericValues[0];
+      if (comparison === 'maior que') {
+        return planets.filter((planet) => planet[column] > Number(value));
+      } if (comparison === 'menor que') {
+        return planets.filter((planet) => planet[column] < Number(value));
+      }
+      return planets.filter((planet) => planet[column] === value);
+    }
+    return planets;
+  };
 
   return (
     <table className="table-planets">
@@ -26,23 +42,33 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        { name.length !== 0
-          ? (
-            planets.filter((planet) => (planet
-              .name).toLowerCase().search(name.toLowerCase()) !== Number('-1'))
-              .map((planet) => (
-                <PlanetCard
-                  key={ planet.name }
-                  planet={ planet }
-                />
-              ))
-          )
-          : planets.map((planet) => (
+        {
+          filterPlanets().map((planet) => (
+            <tr key={ planet.name }>
+              <td>{planet.name}</td>
+              <td>{planet.rotation_period}</td>
+              <td>{planet.orbital_period}</td>
+              <td>{planet.diameter}</td>
+              <td>{planet.climate}</td>
+              <td>{planet.gravity}</td>
+              <td>{planet.terrain}</td>
+              <td>{planet.surface_water}</td>
+              <td>{planet.population}</td>
+              <td>{planet.films}</td>
+              <td>{planet.created}</td>
+              <td>{planet.edited}</td>
+              <td>{planet.url}</td>
+            </tr>
+          ))
+        }
+        {/* {
+          filterPlanets().map((planet) => (
             <PlanetCard
               key={ planet.url }
               planet={ planet }
             />
-          ))}
+          ))
+        } */}
       </tbody>
     </table>
   );
