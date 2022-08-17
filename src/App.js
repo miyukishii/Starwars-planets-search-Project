@@ -1,9 +1,15 @@
 import React from 'react';
-import './App.css';
+import Header from './components/Header';
+import Table from './components/Table';
+// import AppContext from './context/AppContext';
 
 function App() {
+  // const { planets } = useContext(AppContext);
   return (
-    <span>Hello, App!</span>
+    <div>
+      <Header />
+      <Table />
+    </div>
   );
 }
 
