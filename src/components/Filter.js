@@ -35,7 +35,6 @@ function Filter() {
   };
 
   const handleDeleteFilter = (filter) => {
-    // console.log(filter.column);
     setColumnFilter([...columnFilter, filter.column]);
     setFilterByNumericValues(filterByNumericValues
       .filter((filterOption) => filterOption.column !== filter.column));
@@ -122,7 +121,7 @@ function Filter() {
           data-testid="button-remove-filters"
           onClick={ handleRemove }
         >
-          Remover Filtros
+          Remove filters
         </button>
       </form>
       <div className="filters-container">
