@@ -5,12 +5,14 @@ function Filter() {
   const {
     filterByName,
     inputs,
+    planets,
     filterByNumericValues,
     columnFilter,
     setFilterByName,
     setFilterByNumericValues,
     setInputs,
-    setColumnFilter } = useContext(AppContext);
+    setColumnFilter,
+    setPlanetsFiltered } = useContext(AppContext);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -30,6 +32,24 @@ function Filter() {
       comparison: 'maior que',
       value: '0',
     });
+  };
+
+  const handleDeleteFilter = (filter) => {
+    // console.log(filter.column);
+    setColumnFilter([...columnFilter, filter.column]);
+    setFilterByNumericValues(filterByNumericValues
+      .filter((filterOption) => filterOption.column !== filter.column));
+    setPlanetsFiltered(planets);
+  };
+
+  const handleRemove = () => {
+    setColumnFilter(['population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water']);
+    setFilterByNumericValues([]);
+    setPlanetsFiltered([]);
   };
 
   const { name } = filterByName;
@@ -97,7 +117,37 @@ function Filter() {
         >
           Filter
         </button>
+        <button
+          type="button"
+          data-testid="button-remove-filters"
+          onClick={ handleRemove }
+        >
+          Remover Filtros
+        </button>
       </form>
+      <div className="filters-container">
+        {
+          filterByNumericValues.map((filterOption) => (
+            <div
+              className="filter-option"
+              data-testid="filter"
+              key={ filterOption.column }
+            >
+              <p>{filterOption.column}</p>
+              <p>{filterOption.comparison}</p>
+              <p>{filterOption.value}</p>
+              <button
+                type="button"
+                onClick={ () => {
+                  handleDeleteFilter(filterOption);
+                } }
+              >
+                <i className="gg-trash" />
+              </button>
+            </div>
+          ))
+        }
+      </div>
     </section>
   );
 }

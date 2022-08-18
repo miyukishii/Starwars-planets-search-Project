@@ -46,7 +46,7 @@ function AppProvider({ children }) {
         setPlanetsFiltered(planetsFiltered.filter((planet) => planet[column] === value));
       }
     });
-  }, [filterByNumericValues]);
+  }, [filterByNumericValues, columnFilter]);
 
   return (
     <AppContext.Provider
@@ -62,6 +62,7 @@ function AppProvider({ children }) {
         setFilterByNumericValues,
         setPlanets,
         setColumnFilter,
+        setPlanetsFiltered,
       } }
     >
       {children}
