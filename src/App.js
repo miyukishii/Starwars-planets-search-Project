@@ -2,16 +2,15 @@ import React from 'react';
 import Filter from './components/Filter';
 import Header from './components/Header';
 import Table from './components/Table';
-// import AppContext from './context/AppContext';
+import AppProvider from './context/AppProvider';
 
 function App() {
-  // const { planets } = useContext(AppContext);
   return (
-    <div>
+    <AppProvider>
       <Header />
       <Filter />
       <Table />
-    </div>
+    </AppProvider>
   );
 }
 
