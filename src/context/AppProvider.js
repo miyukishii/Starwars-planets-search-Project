@@ -13,20 +13,56 @@ function AppProvider({ children }) {
   });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [planets, setPlanets] = useState([]);
+  const [planetsFiltered, setPlanetsFiltered] = useState([]);
 
   useEffect(() => {
     const fetchPlanets = async () => {
       const endpoint = 'https://swapi-trybe.herokuapp.com/api/planets/';
       const { results } = await fetch(endpoint)
         .then((response) => response.json());
-      //   console.log(results);
       const data = results
         .filter((planet) => delete planet.residents);
-      //   console.log(data);
       setPlanets(data);
+      setPlanetsFiltered(data);
     };
     fetchPlanets();
   }, []);
+
+  useEffect(() => {
+    filterByNumericValues.forEach((filter) => {
+      const { column, comparison, value } = filter;
+      console.log(comparison);
+      if (comparison === 'maior que') {
+        setPlanetsFiltered(planetsFiltered
+          .filter((planet) => planet[column] > Number(value)));
+      } else if (comparison === 'menor que') {
+        setPlanetsFiltered(planetsFiltered
+          .filter((planet) => planet[column] < Number(value)));
+      } else {
+        setPlanetsFiltered(planetsFiltered.filter((planet) => planet[column] === value));
+      }
+    });
+  }, [filterByNumericValues]);
+
+  // const verifyFilters = () => {
+  //   const { column, comparison, value } = filterByNumericValues[0];
+  //   if (comparison === 'maior que') {
+  //     return planets.filter((planet) => planet[column] > Number(value));
+  //   } if (comparison === 'menor que') {
+  //     return planets.filter((planet) => planet[column] < Number(value));
+  //   }
+  //   return planets.filter((planet) => planet[column] === value);
+  // };
+
+  // const filterPlanets = () => {
+  //   if (name.length !== 0) {
+  //     return planets.filter((planet) => (planet
+  //       .name).toLowerCase().search(name.toLowerCase()) !== Number('-1'));
+  //   } if (filterByNumericValues.length !== 0) {
+  //     return verifyFilters();
+  //   }
+  //   return planets;
+  // };
 
   return (
     <AppContext.Provider
@@ -34,6 +70,7 @@ function AppProvider({ children }) {
         filterByName,
         inputs,
         filterByNumericValues,
+        planetsFiltered,
         planets,
         setInputs,
         setFilterByName,

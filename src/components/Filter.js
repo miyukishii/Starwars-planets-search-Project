@@ -7,7 +7,8 @@ function Filter() {
     setFilterByName,
     setFilterByNumericValues,
     inputs,
-    setInputs } = useContext(AppContext);
+    setInputs,
+    filterByNumericValues } = useContext(AppContext);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -20,7 +21,7 @@ function Filter() {
   };
 
   const handleClick = () => {
-    setFilterByNumericValues([inputs]);
+    setFilterByNumericValues([...filterByNumericValues, inputs]);
     setInputs({
       column: 'population',
       comparison: 'maior que',

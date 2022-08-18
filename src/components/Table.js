@@ -1,23 +1,19 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
-// import PlanetCard from './PlanetCard';
 
 function Table() {
-  const { planets, filterByName, filterByNumericValues } = useContext(AppContext);
+  const { planets,
+    filterByName,
+    // filterByNumericValues,
+    planetsFiltered } = useContext(AppContext);
   const { name } = filterByName;
 
   const filterPlanets = () => {
     if (name.length !== 0) {
       return planets.filter((planet) => (planet
         .name).toLowerCase().search(name.toLowerCase()) !== Number('-1'));
-    } if (filterByNumericValues.length !== 0) {
-      const { column, comparison, value } = filterByNumericValues[0];
-      if (comparison === 'maior que') {
-        return planets.filter((planet) => planet[column] > Number(value));
-      } if (comparison === 'menor que') {
-        return planets.filter((planet) => planet[column] < Number(value));
-      }
-      return planets.filter((planet) => planet[column] === value);
+    } if (planetsFiltered.length !== 0) {
+      return planetsFiltered;
     }
     return planets;
   };
@@ -61,14 +57,6 @@ function Table() {
             </tr>
           ))
         }
-        {/* {
-          filterPlanets().map((planet) => (
-            <PlanetCard
-              key={ planet.url }
-              planet={ planet }
-            />
-          ))
-        } */}
       </tbody>
     </table>
   );
