@@ -4,11 +4,13 @@ import AppContext from '../context/AppContext';
 function Filter() {
   const {
     filterByName,
+    inputs,
+    filterByNumericValues,
+    columnFilter,
     setFilterByName,
     setFilterByNumericValues,
-    inputs,
     setInputs,
-    filterByNumericValues } = useContext(AppContext);
+    setColumnFilter } = useContext(AppContext);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -22,8 +24,9 @@ function Filter() {
 
   const handleClick = () => {
     setFilterByNumericValues([...filterByNumericValues, inputs]);
+    setColumnFilter(columnFilter.filter((options) => options !== inputs.column));
     setInputs({
-      column: 'population',
+      column: columnFilter[0],
       comparison: 'maior que',
       value: '0',
     });
@@ -54,11 +57,9 @@ function Filter() {
             value={ column }
             onChange={ handleFilter }
           >
-            <option value="population">population</option>
-            <option value="orbital_period">orbital_period</option>
-            <option value="diameter">diameter</option>
-            <option value="rotation_period">rotation_period</option>
-            <option value="surface_water">surface_water</option>
+            {columnFilter.map((option) => (
+              <option key={ option } value={ option }>{option}</option>
+            ))}
           </select>
         </label>
 

@@ -14,6 +14,11 @@ function AppProvider({ children }) {
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [planets, setPlanets] = useState([]);
   const [planetsFiltered, setPlanetsFiltered] = useState([]);
+  const [columnFilter, setColumnFilter] = useState(['population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water']);
 
   useEffect(() => {
     const fetchPlanets = async () => {
@@ -31,7 +36,6 @@ function AppProvider({ children }) {
   useEffect(() => {
     filterByNumericValues.forEach((filter) => {
       const { column, comparison, value } = filter;
-      console.log(comparison);
       if (comparison === 'maior que') {
         setPlanetsFiltered(planetsFiltered
           .filter((planet) => planet[column] > Number(value)));
@@ -47,6 +51,7 @@ function AppProvider({ children }) {
   return (
     <AppContext.Provider
       value={ {
+        columnFilter,
         filterByName,
         inputs,
         filterByNumericValues,
@@ -56,6 +61,7 @@ function AppProvider({ children }) {
         setFilterByName,
         setFilterByNumericValues,
         setPlanets,
+        setColumnFilter,
       } }
     >
       {children}
