@@ -6,6 +6,7 @@ function AppProvider({ children }) {
   const [filterByName, setFilterByName] = useState({
     name: '',
   });
+  const [order, setOrder] = useState({ column: 'population', sort: '' });
   const [inputs, setInputs] = useState({
     column: 'population',
     comparison: 'maior que',
@@ -51,6 +52,7 @@ function AppProvider({ children }) {
   return (
     <AppContext.Provider
       value={ {
+        order,
         columnFilter,
         filterByName,
         inputs,
@@ -63,6 +65,7 @@ function AppProvider({ children }) {
         setPlanets,
         setColumnFilter,
         setPlanetsFiltered,
+        setOrder,
       } }
     >
       {children}

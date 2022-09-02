@@ -56,7 +56,7 @@ function Filter() {
   return (
     <section className="planet-filter">
       <label htmlFor="planet-input">
-        Digite o nome do planeta:
+        Search for a planet:
         <input
           data-testid="name-filter"
           type="text"
@@ -123,6 +123,7 @@ function Filter() {
         >
           Remove filters
         </button>
+
       </form>
       <div className="filters-container">
         {

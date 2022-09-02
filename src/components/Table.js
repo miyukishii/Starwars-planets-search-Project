@@ -4,7 +4,6 @@ import AppContext from '../context/AppContext';
 function Table() {
   const { planets,
     filterByName,
-    // filterByNumericValues,
     planetsFiltered } = useContext(AppContext);
   const { name } = filterByName;
 
@@ -18,6 +17,21 @@ function Table() {
     return planets;
   };
 
+  const columnOrderOptions = [
+    'name',
+    'rotation_period',
+    'orbital_period',
+    'diameter',
+    'climate',
+    'gravity',
+    'terrain',
+    'surface_water',
+    'population',
+    'films',
+    'created',
+    'edited',
+    'url',
+  ];
   return (
     <div className="div-table">
       <table className="table-planets">
@@ -39,25 +53,24 @@ function Table() {
           </tr>
         </thead>
         <tbody>
+
           {
-            filterPlanets().map((planet) => (
-              <tr key={ planet.name }>
-                <td>{planet.name}</td>
-                <td>{planet.rotation_period}</td>
-                <td>{planet.orbital_period}</td>
-                <td>{planet.diameter}</td>
-                <td>{planet.climate}</td>
-                <td>{planet.gravity}</td>
-                <td>{planet.terrain}</td>
-                <td>{planet.surface_water}</td>
-                <td>{planet.population}</td>
-                <td>{planet.films}</td>
-                <td>{planet.created}</td>
-                <td>{planet.edited}</td>
-                <td>{planet.url}</td>
+            filterPlanets().map((planet, index) => (
+              <tr key={ index }>
+                {
+                  columnOrderOptions.map((column, i) => (
+                    <td
+                      data-testi="planet-name"
+                      key={ i }
+                    >
+                      {planet[column]}
+                    </td>
+                  ))
+                }
               </tr>
             ))
           }
+
         </tbody>
       </table>
     </div>

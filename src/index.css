@@ -39,17 +39,25 @@ header h1 {
 }
 
 form {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
   margin: 10px auto;
+  height: 30px;
 }
 
 form select, input {
-  margin: 0 10px 10px 10px;
+  text-align: center;
+  margin: 0 10px 10px 5px;
 }
 
 form button {
+  margin-top: -10px;
   width: 80px;
   height: 35px;
   border-radius: 10px;
+  margin-right: 10px;
 }
 
 .filters-container {
