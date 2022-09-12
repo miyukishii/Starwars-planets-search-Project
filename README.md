@@ -1,16 +1,16 @@
-# 🚧 README em construção 🚧
+## **Bem-vindo ao repositório do projeto Starwars Planets Search!**
 
-<!-- Olá, Tryber!
+### Screenshots
+![Screenshot da tela inicial](screenshot.png)
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+### Contexto
+No projeto Starwars Planets Search foi desenvolvido uma aplicação de listagem de planetas do universo de Starwars, com a possibilidades de filtragem escolhida pelo usuário.
 
-É essencial que você preencha esse documento por conta própria, ok?
+### Tecnologias utilizadas
+Projeto desenvolvido utilizando React, Context API e Hooks como gerenciar de estados globais da aplicação, CSS3 e React Testing Library.
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+### Link do Deploy
+<a href="https://starwars-planets-search-project.vercel.app/">Clique aqui</a>
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
+##### Observações:
+###### Este projeto foi requisitado pela Trybe ao longo da formação do curso de Desenvolvimento Web, para avaliação do conhecimento adquirido nos módulos de Fundamentos. Todos os aquivos dentro da pasta src foram desenvolvidas por mim e os outros arquivos foram desenvolvidas pela Trybe.
